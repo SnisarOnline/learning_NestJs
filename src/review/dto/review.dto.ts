@@ -1,1 +1,2 @@
-export class ReviewDto {}
+export class ReviewDto {
+}

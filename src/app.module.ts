@@ -1,4 +1,9 @@
 import {Module} from '@nestjs/common';
+import {ConfigModule, ConfigService} from '@nestjs/config';
+import {TypegooseModule} from 'nestjs-typegoose';
+import {SharedModule} from './shared/shared.module';
+import {getMongoConfig} from './shared/configs/mongoConfig';
+
 import {AppController} from './app.controller';
 import {AppService} from './app.service';
 import {AuthModule} from './auth/auth.module';
@@ -7,9 +12,24 @@ import {ProductModule} from './product/product.module';
 import {ReviewModule} from './review/review.module';
 
 @Module({
-	imports: [AuthModule, TopPageModule, ProductModule, ReviewModule],
+	imports: [
+		ConfigModule.forRoot(),
+		TypegooseModule.forRootAsync({
+			imports: [ConfigModule],
+			inject: [ConfigService],
+			useFactory: getMongoConfig
+		}),
+		AuthModule,
+		TopPageModule,
+		ProductModule,
+		ReviewModule,
+		SharedModule
+	],
 	controllers: [AppController],
 	providers: [AppService]
 })
 export class AppModule {
+	constructor() {
+		console.log('AppModule is started');
+	}
 }
