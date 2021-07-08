@@ -1,5 +1,4 @@
 import {Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post} from '@nestjs/common';
-import {ConfigService} from '@nestjs/config';
 import {ProductModel} from './product.model';
 import {FindProductDto} from './dto/find-product.dto';
 

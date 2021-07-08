@@ -1,5 +1,4 @@
 import {Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post} from '@nestjs/common';
-import {ConfigService} from '@nestjs/config';
 import {TopPageModel} from './top-page.model';
 import {FindTopPageDto} from './dto/top-page.dto';
 
